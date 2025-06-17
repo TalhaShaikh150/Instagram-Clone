@@ -5,6 +5,7 @@ const supabaseKey =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFrZnBrc3ltdm95ZXBzYmJmcG1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTU5NzQsImV4cCI6MjA2NDM3MTk3NH0.dOSrNcPAMBXkcEDfsLCzXoX1uWhiHCaJLpizQUuB1i8";
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
+
 export async function sendUserDetailsToDb(
   firstName,
   lastName,
@@ -92,14 +93,38 @@ export async function sendPostToDb() {
     console.error("File Upload Error:", error.message);
     return null;
   }
+
+  return data;
+}
+// const postTitle = document.querySelector(".post-modal .post-title");
+
+// const title = postTitle.value;
+
+export async function sendPostSrc(email, src, title) {
+  const { data, error } = await supabase
+    .from("postSrc")
+    .insert([{ email, src, title }])
+    .select();
+
+  if (error) {
+    console.error("❌ Upsert Error:", error.message);
+    return null;
+  }
+
+  return data.length > 0 ? data[0] : null;
+}
+
+export async function getPostSrc() {
+  const { data, error } = await supabase.from("postSrc").select("*");
   return data;
 }
 
 //For Fetching Post From Database
 export async function getPostFromDb() {
-  const file = postfile.files[0];
+  const postfile = document.querySelector(".post-file");
 
-  const { data, error } = supabase.storage
+  const file = postfile.files[0];
+  const { data, error } = await supabase.storage
     .from("userimages")
     .getPublicUrl(`${email}/${file.name}`);
 
@@ -115,19 +140,18 @@ export async function getPostFromDb() {
 export async function sendProfileSrc(email, src) {
   const { data, error } = await supabase
     .from("profileSrc")
-    .insert([{ email, src }])
+    .upsert([{ email, src }], { onConflict: ["email"] }) // <-- this is the key
     .select();
 
   if (error) {
-    console.error("❌ Insert Error:", error.message);
+    console.error("❌ Upsert Error:", error.message);
     return null;
   }
 
   return data.length > 0 ? data[0] : null;
 }
 
-export async function getProfileSrc(){
-  const {data,error} = await supabase.from('profileSrc').select('*')
-  return data
+export async function getProfileSrc() {
+  const { data, error } = await supabase.from("profileSrc").select("*");
+  return data;
 }
-

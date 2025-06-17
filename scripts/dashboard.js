@@ -7,6 +7,8 @@ import {
   sendPostToDb,
   getPostFromDb,
   supabase,
+  sendPostSrc,
+  getPostSrc,
 } from "../backend/database.js";
 
 let userId;
@@ -16,7 +18,7 @@ export async function renderUserDetails() {
   //Here Fetching User Details From Database
   const data = await getUserDetailsFromDb();
   for (let i = 0; i < data.length; i++) {
-    userId = JSON.parse(localStorage.getItem("userid")) || "Guest";
+    userId = JSON.parse(localStorage.getItem("userid")) || "User";
     if (data[i].id.includes(userId)) {
       let fullName = `${data[i].firstName} ${data[i].lastName} `;
       userName.forEach((name) => {
@@ -26,16 +28,6 @@ export async function renderUserDetails() {
       return data[i].email;
     }
   }
-}
-
-const postProfile = document.querySelector(".profile-pic");
-
-export async function getProfileImage(email) {
-  const profile = postProfile.files[0];
-  const { data, error } = await supabase.storage
-    .from("userimages")
-    .getPublicUrl(`${email}/profile-${profile.name}`, profile);
-  let profileLink = data.publicUrl;
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -69,37 +61,59 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     // For Add Post
-    let postCount = 0;
     const postCountElement = document.querySelector(".post-count");
     const postTitle = document.querySelector(".post-modal .post-title");
     const postfile = document.querySelector(".post-modal .post-file");
     const addPostBtn = document.querySelector(".post-modal .add-post-btn");
     const postContainer = document.querySelector(".post-container");
+    const postSrc = await getPostSrc();
+
+    for (let i = 0; i < postSrc.length; i++) {
+      if (postSrc[i].email.includes(email)) {
+        postContainer.innerHTML += ` <div class="post">
+          <img src="${postSrc[i].src}" class="all-images" alt="" loading="lazy"/>
+          <p class="title-post">${postSrc[i].title}</p>
+          </div>`;
+      }
+    }
+    const allPost = document.querySelectorAll(".post");
+    let postCount = allPost.length;
+    postCountElement.innerHTML = postCount;
+
     addPostBtn.addEventListener("click", async () => {
       if (!postTitle.value || !postfile.value) {
         alert("Don't Leave Empty Fields");
         return;
       }
-
+      if (postTitle.value.length > 15) {
+        console.log(postTitle.value.length);
+        alert("Post Title Lenght Should Be Less Than 16");
+        return;
+      }
       postModal.classList.add("hide");
       overlay.classList.add("hide");
-
-      // const file = postfile.files[0];
 
       async function render() {
         await sendPostToDb();
         const databasefile = await getPostFromDb();
+        const src = databasefile;
+        const title = postTitle.value;
+
+        await sendPostSrc(email, src, title);
 
         let html = `
-      <div class="post">
-      <img src="${databasefile}" class="all-images" alt="" />
-      </div>
-      `;
-        postCount++;
-        postCountElement.innerHTML = postCount;
-        postContainer.innerHTML += html;
+        <div class="post">
+        <img src="${databasefile}" class="all-images" alt="" loading="lazy"/>
+        <p class="title-post">${postTitle.value}</p>
+        </div>
+        `;
         postTitle.value = "";
         postfile.value = "";
+
+        postCount++;
+
+        postCountElement.innerHTML = postCount;
+        postContainer.innerHTML += html;
       }
       render();
     });
@@ -141,9 +155,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         profileImage.src = databasefile;
         overlay.classList.add("hide");
         profileModal.classList.add("hide");
-
-        // pageReload();
-        getProfileImage(email);
       }
       render();
     });
