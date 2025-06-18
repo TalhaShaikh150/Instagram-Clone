@@ -24,29 +24,26 @@ export async function renderUserDetails() {
       userName.forEach((name) => {
         name.innerHTML = fullName;
       });
-
       return data[i].email;
     }
   }
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const profileImage = document.querySelector(".profile");
-
   const email = await renderUserDetails();
   const postModal = document.querySelector(".post-modal");
   const overlay = document.querySelector(".overlay");
+  if (window.location.pathname.endsWith("/dashboard.html")) {
+    const profileImage = document.querySelector(".profile");
 
-  const dataImages = await getProfileSrc();
-
-  for (let i = dataImages.length - 1; i >= 0; i--) {
-    if (dataImages[i].src.includes(email)) {
-      profileImage.src = dataImages[i].src;
-      break;
+    const dataImages = await getProfileSrc();
+    for (let i = 0; i < dataImages.length;i++) {
+      if (dataImages[i].src.includes(email)) {
+        profileImage.src = dataImages[i].src;
+        break;
+      }
     }
-  }
 
-  if (window.location.pathname === "/dashboard.html") {
     // For Logout
     const logOutBtn = document.querySelector(".logout-btn");
     logOutBtn.addEventListener("click", () => {
@@ -127,7 +124,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // To Add Profile
     let addProfile = document.querySelector(".upload-btn");
-    const profileImage = document.querySelector(".profile");
 
     const postProfileBtn = document.querySelector(".post-profile-btn");
     const backProfileModal = document.querySelector(".back-profile-btn");
