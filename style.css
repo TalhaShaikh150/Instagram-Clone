@@ -130,6 +130,7 @@
  }
 
  .username {
+  margin:20px;
    color: var(--primary-color);
    font-size: 1.2em;
    font-weight: 500;
