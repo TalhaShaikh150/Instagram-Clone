@@ -1,471 +1,647 @@
- @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
 
- * {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-   font-family: 'SF Pro Display', sans-serif;
-   transition: 0.3s all ease;
- }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'SF Pro Display', sans-serif;
+  transition: 0.3s all ease;
+}
 
- :root {
-   --background-color: #161616;
-   --primary-color: #FFFFFF;
-   --secondary-color: #3797EF;
- }
+:root {
+  --background-color: #161616;
+  --primary-color: #FFFFFF;
+  --secondary-color: #3797EF;
+}
 
- body {
-   background-color: var(--background-color);
- }
+body {
+  background-color: var(--background-color);
+  min-height: 100vh;
+}
 
- /*For Signup Page*/
+/* Common Styles */
+.hide {
+  display: none !important;
+}
 
- .overlay {
-   backdrop-filter: blur(8px);
-   background-color: rgba(3, 3, 3, 0.129);
-   position: fixed;
-   width: 100% !important;
-   height: 100% !important;
-   top: 0;
-   left: 0;
-   z-index: 2;
- }
+/* For Signup Page */
+.overlay {
+  backdrop-filter: blur(8px);
+  background-color: rgba(3, 3, 3, 0.129);
+  position: fixed;
+  width: 100% !important;
+  height: 100% !important;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
 
- main {
-   background-color: var(--background-color);
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column;
-   gap: 20px;
-   height: 90vh;
- }
-
- main img {
-   width: 200px;
- }
-
- .btn {
-   background-color: var(--secondary-color);
-   width: 80%;
-   text-align: center;
-   font-weight: 500;
-   border: none;
-   border-radius: 5px;
-   color: white;
-   padding: 10px;
-   text-decoration: none;
-   font-size: 1.2em;
- }
-
- .sign-up {
-   margin-left: 2px;
-   color: var(--primary-color);
-   font-weight: 500;
-   text-decoration: none;
- }
-
- main p {
-   color: #969696;
- }
-
- /*For Login/Signup Page*/
- form input {
-   padding: 10px 16px;
-   border: none;
-   font-size: 1.2em;
-   color: var(--primary-color);
-   width: 280px;
-   background-color: #121212;
- }
-
- .form-group {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   margin-top: 20px;
-   gap: 20px;
- }
-
- .password-container {
-   position: relative;
-   display: flex;
-   align-items: center;
- }
-
- .fa-eye,
- .fa-eye-slash {
-   font-size: 1.2em;
-   position: absolute;
-   right: 5%;
-   color: var(--primary-color);
- }
-
-
- .alert-message {
-   color: #ea3a3a;
-   font-weight: 500;
-   letter-spacing: 1px;
- }
-
- .hide {
-   display: none !important;
- }
-
-
- /*Dashboard*/
-
- .header {
-   justify-content: space-between;
-   display: flex;
-   align-content: center;
-   align-items: center;
-   margin: 30px;
- }
-
- .header i {
-   font-size: 1.2em;
-   color: var(--primary-color);
- }
-
- .username {
-   color: var(--primary-color);
-   font-size: 1.2em;
-   font-weight: 500;
- }
-
- .logout-btn {
-   text-decoration: none;
-   padding: 10px;
-   border: none;
-   border-radius: 5px;
-   font-weight: 500;
-   background-color: var(--primary-color);
-   color: var(--background-color);
- }
-
- .logout-btn i {
-   margin-left: 8px;
-   rotate: 180deg;
-   color: var(--background-color);
- }
-
- .profile-container {
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   margin: 20px;
-   color: var(--primary-color);
- }
-
- .profile-border {
-   border: none;
-   width: 66px;
-   height: 66px;
-   padding: 3px;
-   border-radius: 50%;
-   background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   position: relative;
- }
-
-
- .upload-btn {
-   border: none;
-   position: absolute;
-   right: -5px;
-   bottom: -5px;
-   display: inline-block;
-   cursor: pointer;
- }
-
- .upload-btn i {
-   border: 2px solid var(--background-color);
-   background-color: var(--primary-color);
-   color: var(--background-color);
-   border-radius: 50px;
-   padding: 8px;
-   pointer-events: none;
- }
-
- /* Hide input */
- .upload-btn input[type="file"] {
-   display: none;
- }
-
- .profile-border img {
-   width: 60px;
-   height: 60px;
-   border-radius: 50%;
-   background-color: white;
- }
-
- .posts,
- .followers,
- .following {
-   display: flex;
-   text-align: center;
-   flex-direction: column;
-   font-weight: 500;
- }
-
- .profile-modal {
-   display: flex;
-   flex-direction: column;
-   padding: 20px;
-   text-align: center;
- }
-
- .profile-modal button {
-   border: none;
-   margin: 10px auto;
-   padding: 10px 28px;
-   font-size: 1.1em;
-   font-weight: 500;
-   border-radius: 4px;
- }
-
- .bio {
-   color: var(--primary-color);
-   margin: 20px;
-   display: flex;
-   flex-direction: column;
-   width: 80%;
-   font-size: 0.9em;
-   gap: 10px;
- }
-
- .bio a {
-   text-decoration: none;
-   color: var(--secondary-color);
- }
-
- .post-container {
-   display: flex;
-   flex-wrap: wrap;
-   gap: 2px;
-   width: 100%;
-   padding: 20px;
-   margin: 20px auto;
-   margin-bottom: 20%;
- }
- 
- .post {
-   position: relative;
-   border: 3px solid #969696;
-   width: calc(33.333% - 2px);
-   aspect-ratio: 1 / 1;
-   margin-right: 1px;
-   margin-bottom: 1px;
-   box-sizing: border-box;
-   object-fit: cover;
-   height: 100%;
- }
-
- .post:nth-child(3n) {
-   margin-right: 0;
- }
-
- .title-post {
-   position: absolute;
-   bottom: 0;
-   color: #fff;
-   text-shadow: 2px 2px 20px #000;
-   background-color: #1212127b;
-   width: 100%;
-   height: 30px;
-   text-align: center;
-   align-content: center;
-
- }
-
- .modal-title {
-   color: var(--primary-color);
- }
-
- .post-modal,
- .profile-modal {
-   position: absolute;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   gap: 1.5rem;
-   width: 80%;
-   max-width: 500px;
-   top: 30%;
-   left: 50%;
-   transform: translateX(-50%);
-   padding: 2rem;
-   background-color: rgba(36, 34, 34, 0.9);
-   backdrop-filter: blur(10px);
-   border-radius: 12px;
-   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28);
-   border: 1px solid rgba(255, 255, 255, 0.1);
-   z-index: 2;
- }
-
- .post-title {
-   width: 100%;
-   padding: 0.8rem 1rem;
-   background: rgba(255, 255, 255, 0.1);
-   border: 1px solid rgba(255, 255, 255, 0.2);
-   border-radius: 8px;
-   color: white;
-   font-size: 1rem;
-   transition: all 0.3s ease;
- }
-
- .post-title:focus {
-   outline: none;
-   border-color: #4a90e2;
-   background: rgba(255, 255, 255, 0.15);
-   box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
- }
-
- .post-file,
- .profile-pic {
-   width: 0.1px;
-   height: 0.1px;
-   opacity: 0;
-   overflow: hidden;
-   position: absolute;
-   object-fit: cover;
-
- }
-
- label[for="file"],
- label[for="profile"] {
-   display: inline-block;
-   width: 100%;
-   padding: 1rem;
-   background: rgba(74, 144, 226, 0.1);
-   border: 1px dashed rgba(74, 144, 226, 0.5);
-   border-radius: 8px;
-   color: #4a90e2;
-   text-align: center;
-   cursor: pointer;
-   transition: all 0.3s ease;
- }
-
- label[for="file"]:hover,
- label[for="profile"]:hover {
-   background: rgba(74, 144, 226, 0.2);
-   border-color: #4a90e2;
- }
-
- label[for="file"]::before,
- label[for="profile"]::before {
-   content: "Upload File";
-   display: block;
-   margin-bottom: 0.5rem;
-   font-weight: 500;
- }
-
- label[for="file"]::after,
- label[for="profile"]::after {
-   content: "or drag and drop";
-   display: block;
-   font-size: 0.8rem;
-   color: rgba(255, 255, 255, 0.6);
- }
-
- .post img {
-   overflow: hidden;
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
- }
-
- .post-modal button {
-
-   border: none;
-   padding: 10px 28px;
-   font-size: 1.1em;
-   font-weight: 500;
-   border-radius: 4px;
-
- }
-
- .navigation {
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   position: fixed;
-   width: 100%;
-   height: 8dvh;
-   padding: 0 40px;
-   background-color: #101010;
-   bottom: 0;
- }
-
- .navigation i {
-   color: var(--primary-color);
-   font-size: 1.8em;
- }
-
- /*For Post Feed Page*/
- .no-post-message {
-  font-size: 2em;
+main {
+  background-color: var(--background-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-   color: var(--primary-color);
- }
+  flex-direction: column;
+  gap: 20px;
+  min-height: 100vh;
+  padding: 20px;
+}
 
- .d-flex {
-   display: flex;
-   align-items: center;
-   margin: 10px;
- }
+main img {
+  width: 200px;
+}
 
- .feed-post .profile-border img {
-   width: 30px;
-   height: 30px;
- }
+.btn {
+  background-color: var(--secondary-color);
+  width: 80%;
+  max-width: 350px;
+  text-align: center;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 1.2em;
+  cursor: pointer;
+}
 
- .feed-post .profile-border {
-   width: 38px;
-   height: 38px;
- }
+.sign-up {
+  margin-left: 2px;
+  color: var(--primary-color);
+  font-weight: 500;
+  text-decoration: none;
+}
 
+main p {
+  color: #969696;
+  text-align: center;
+}
 
- .feed-post .username {
-   margin: 10px;
- }
+/* For Login/Signup Page */
+form input {
+  padding: 12px 16px;
+  border: none;
+  font-size: 1.2em;
+  color: var(--primary-color);
+  width: 100%;
+  max-width: 350px;
+  background-color: #121212;
+  border-radius: 5px;
+}
 
- .feed-post img {
-   width: 100%;
-   height: 220px;
-   object-fit: cover;
- }
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 20px;
+  width: 100%;
+}
 
- .feed-post .icons {
-   display: flex;
-   justify-content: space-between;
-   margin: 20px 12px;
-   color: var(--primary-color);
-   font-size: 1.2em;
- }
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 350px;
+}
 
- .gap i {
-   margin-right: 10px;
- }
+.fa-eye,
+.fa-eye-slash {
+  font-size: 1.2em;
+  position: absolute;
+  right: 5%;
+  color: var(--primary-color);
+  cursor: pointer;
+}
 
- /* @media screen and (min-width:460px) {
-   .profile-container {
-     width: 50%;
-     margin: 0 auto;
-   }
+.alert-message {
+  color: #ea3a3a;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-align: center;
+}
 
-   .posts,
-   .followers,
-   .following {
-     font-size: 1.2em;
-   }
+/* Dashboard */
+.header {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
- } */
+.header i {
+  font-size: 1.2em;
+  color: var(--primary-color);
+}
+
+.bio-username {
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.username {
+  color: var(--primary-color);
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.logout-btn {
+  text-decoration: none;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.logout-btn i {
+  margin-left: 8px;
+  rotate: 180deg;
+  color: var(--background-color);
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px auto;
+  color: var(--primary-color);
+  max-width: 600px;
+  padding: 0 20px;
+}
+
+.profile-border {
+  border: none;
+  width: 80px;
+  height: 80px;
+  padding: 3px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.upload-btn {
+  border: none;
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  display: inline-block;
+  cursor: pointer;
+  background: transparent;
+}
+
+.upload-btn i {
+  border: 2px solid var(--background-color);
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border-radius: 50px;
+  padding: 8px;
+  pointer-events: none;
+  font-size: 0.8em;
+}
+
+/* Hide input */
+.upload-btn input[type="file"] {
+  display: none;
+}
+
+.profile-border img {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  background-color: white;
+  object-fit: cover;
+}
+
+.posts,
+.followers,
+.following {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  font-weight: 500;
+  min-width: 60px;
+}
+
+.profile-modal {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+}
+
+.profile-modal button {
+  border: none;
+  margin: 10px auto;
+  padding: 12px 28px;
+  font-size: 1.1em;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 200px;
+}
+
+.bio {
+  color: var(--primary-color);
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  max-width: 600px;
+  font-size: 1em;
+  gap: 10px;
+}
+
+.bio a {
+  text-decoration: none;
+  color: var(--secondary-color);
+}
+
+.post-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  margin: 20px auto;
+  margin-bottom: 100px;
+}
+
+.post {
+  position: relative;
+  border: 1px solid #969696;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  box-sizing: border-box;
+  object-fit: cover;
+  height: auto;
+  cursor: pointer;
+}
+
+.title-post {
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  text-shadow: 2px 2px 20px #000;
+  background-color: #1212127b;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9em;
+  padding: 0 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modal-title {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+.post-modal,
+.profile-modal {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 90%;
+  max-width: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  background-color: rgba(36, 34, 34, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 10;
+}
+
+.post-title {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.post-title:focus {
+  outline: none;
+  border-color: #4a90e2;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.post-file,
+.profile-pic {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  object-fit: cover;
+}
+
+label[for="file"],
+label[for="profile"] {
+  display: inline-block;
+  width: 100%;
+  padding: 1rem;
+  background: rgba(74, 144, 226, 0.1);
+  border: 1px dashed rgba(74, 144, 226, 0.5);
+  border-radius: 8px;
+  color: #4a90e2;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+label[for="file"]:hover,
+label[for="profile"]:hover {
+  background: rgba(74, 144, 226, 0.2);
+  border-color: #4a90e2;
+}
+
+label[for="file"]::before,
+label[for="profile"]::before {
+  content: "Upload File";
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+label[for="file"]::after,
+label[for="profile"]::after {
+  content: "or drag and drop";
+  display: block;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.post img {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-modal button {
+  border: none;
+  padding: 12px 28px;
+  font-size: 1.1em;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 200px;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: fixed;
+  width: 100%;
+  max-width: 1200px;
+  height: 70px;
+  padding: 0 20px;
+  background-color: #101010;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top: 1px solid #333;
+}
+
+.navigation i {
+  color: var(--primary-color);
+  font-size: 1.8em;
+  cursor: pointer;
+}
+
+/* For Post Feed Page */
+.no-post-message {
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 140px);
+  color: var(--primary-color);
+  text-align: center;
+  padding: 20px;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.feed-post {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto 30px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #121212;
+}
+
+.feed-post .profile-border img {
+  width: 40px;
+  height: 40px;
+}
+
+.feed-post .profile-border {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+}
+
+.feed-post .username {
+  margin: 0 10px;
+  font-size: 1.1em;
+}
+
+.feed-post img {
+  width: 100%;
+  height: auto;
+  max-height: 600px;
+  object-fit: cover;
+}
+
+.feed-post .icons {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  color: var(--primary-color);
+  font-size: 1.4em;
+}
+
+.gap i {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.feed-img-container {
+  position: relative !important;
+  width: 100%;
+}
+
+.like {
+  position: absolute;
+  color: var(--primary-color);
+  font-size: 5em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: heart 1s linear;
+  pointer-events: none;
+  opacity: 0;
+}
+
+@keyframes heart {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+
+  20% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+/* Desktop-specific styles */
+@media screen and (min-width: 768px) {
+  main img {
+    width: 250px;
+  }
+
+  .profile-container {
+    padding: 0 40px;
+  }
+
+  .profile-border {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile-border img {
+    width: 94px;
+    height: 94px;
+  }
+
+  .upload-btn i {
+    padding: 10px;
+    font-size: 1em;
+  }
+
+  .posts,
+  .followers,
+  .following {
+    font-size: 1.2em;
+    min-width: 80px;
+  }
+
+  .post-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px 40px;
+  }
+
+  .navigation {
+    padding: 0 40px;
+    justify-content: space-between;
+  }
+
+  .navigation i {
+    font-size: 2em;
+  }
+
+  .feed-post {
+    margin-bottom: 40px;
+  }
+
+  .feed-post .profile-border {
+    width: 50px;
+    height: 50px;
+  }
+
+  .feed-post .profile-border img {
+    width: 46px;
+    height: 46px;
+  }
+
+  .feed-post .username {
+    font-size: 1.2em;
+  }
+
+  .post-modal,
+  .profile-modal {
+    padding: 3rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .header {
+    padding: 20px 60px;
+  }
+
+  .profile-container {
+    max-width: 800px;
+  }
+
+  .bio {
+    max-width: 800px;
+    font-size: 1.1em;
+  }
+
+  .post-container {
+    max-width: 1400px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  .navigation {
+    max-width: 1400px;
+    padding: 0 60px;
+  }
+
+  .feed-post {
+    max-width: 800px;
+  }
+}
